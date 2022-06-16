@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask SHAREit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <p>
+        <input type="file" name="files" id="files" onchange="isSelected()" multiple>
+    </p>
+    <p><input type="submit" id="submit_button" value="Yuborish" disabled></p>
+</form>
+{% if files %}
+    <div id="related_links">
+        <ul>
+            {% for file in files %}
+                <li><a href="{{ url_for('static', filename='files/%s' % file) }}">{{ file }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+</body>
+</html>
