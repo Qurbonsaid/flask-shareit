@@ -17,6 +17,8 @@ def favicon():
 
 @app.route('/')
 def share():
+    if not os.path.exists(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'])):
+        os.mkdir(os.path.join(app.root_path, app.config['UPLOAD_FOLDER']))
     files = os.listdir(os.path.join(app.root_path, app.config['UPLOAD_FOLDER']))
     return render_template('share.html', files=files)
 
